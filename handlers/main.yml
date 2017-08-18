@@ -1,0 +1,15 @@
+---
+# handlers file for selinux
+- name: "Reboot server"
+  shell: 'sleep 5 && systemctl reboot'
+  async: 1
+  poll: 0
+  ignore_errors: true
+  listen: "reboot server"
+
+- name: "Wait for target connection to become reachable/usable"
+  wait_for_connection:
+    delay: 30
+    timeout: 180
+  listen: "reboot server"
+  

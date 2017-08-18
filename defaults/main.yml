@@ -1,0 +1,6 @@
+---
+# defaults file for selinux
+selinux_packages:
+- "policycoreutils-python"
+selinux_policy: "targeted"
+selinux_state: "enforcing"

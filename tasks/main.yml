@@ -1,0 +1,18 @@
+---
+# tasks file for selinux
+- name: "Install SeLinux packages"
+  yum:
+    name: "{{item}}"
+    state: "latest"
+  with_items:
+  - "{{selinux_packages}}"
+
+- name: "Enforce SeLinux targeted policy"
+  selinux:
+    policy: "{{selinux_policy}}"
+    state: "{{selinux_state}}"
+  notify:
+  - "reboot server"
+
+- name: "Flush handlers"
+  meta: "flush_handlers"
